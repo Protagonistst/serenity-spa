@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    @apply antialiased;
+  }
+  
+  /* Light mode (default) */
+  body {
+    @apply font-sans text-charcoal-800 min-h-screen bg-white transition-colors duration-300;
+  }
+  
+  /* Dark mode */
+  .dark body {
+    @apply bg-charcoal-900 text-gray-100;
+  }
+
+  /* Typography refinements */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight;
+  }
+  
+  h1 {
+    @apply text-5xl md:text-6xl lg:text-7xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  p {
+    @apply leading-relaxed;
+  }
+  
+  /* Selection styling */
+  ::selection {
+    @apply bg-primary-200 text-primary-900;
+  }
+  
+  .dark ::selection {
+    @apply bg-primary-800 text-primary-100;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Light mode buttons */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-full text-base font-medium shadow-sm transition-all duration-300 transform hover:scale-105 active:scale-95;
+}
+
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 hover:shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply btn bg-secondary-600 text-white hover:bg-secondary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500 hover:shadow-lg;
+}
+  
+  .btn-accent {
+    @apply btn bg-accent-600 text-white hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500 hover:shadow-lg;
+}
+
+  .btn-outline {
+    @apply btn border-2 border-primary-600 text-primary-600 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 hover:shadow-md;
+  }
+  
+  /* Dark mode variations */
+  .dark .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-600 focus:ring-primary-400;
+}
+
+  .dark .btn-secondary {
+    @apply bg-secondary-500 hover:bg-secondary-600 focus:ring-secondary-400;
+  }
+  
+  .dark .btn-accent {
+    @apply bg-accent-500 hover:bg-accent-600 focus:ring-accent-400;
+}
+
+  .dark .btn-outline {
+    @apply border-primary-500 text-primary-400 hover:bg-primary-950 focus:ring-primary-400;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-2xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl;
+  }
+  
+  .dark .card {
+    @apply bg-charcoal-800 shadow-2xl;
+  }
+  
+  /* Luxury card variant */
+  .card-luxury {
+    @apply card border border-accent-200 dark:border-accent-800;
+  }
+  
+  /* Section backgrounds */
+  .bg-section-light {
+    @apply bg-gradient-to-b from-gray-50 to-white;
+  }
+  
+  .dark .bg-section-light {
+    @apply from-charcoal-800 to-charcoal-900;
+}
+  
+  /* Text gradients */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+}
+  
+  .dark .text-gradient {
+    @apply from-primary-400 to-secondary-400;
+  }
+  
+  /* Loading shimmer effect */
+  .shimmer {
+    @apply relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent;
+}
+
+  /* Luxury divider */
+  .divider-luxury {
+    @apply relative h-px bg-gradient-to-r from-transparent via-accent-400 to-transparent my-12;
+  }
+}
+
+@layer utilities {
+  /* Animation delays */
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+  
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+  
+  /* Perspective for 3D effects */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  /* Text shadow for luxury feel */
+  .text-shadow-luxury {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dark .text-shadow-luxury {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
