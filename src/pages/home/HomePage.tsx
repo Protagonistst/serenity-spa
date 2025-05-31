@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { useParallax } from '../../hooks/useParallax';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 const HomePage = () => {
-  const heroParallax = useParallax({ speed: 0.5 });
   const featuresAnimation = useScrollAnimation({ threshold: 0.1 });
   const statsAnimation = useScrollAnimation({ threshold: 0.1 });
 
@@ -26,30 +24,27 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with Parallax */}
+      {/* Hero Section - Static (No Parallax) */}
       <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-        {/* Background Image with Parallax */}
-        <motion.div 
-          className="absolute inset-0 z-0"
-          style={{ transform: `translateY(${heroParallax}px)` }}
-        >
+        {/* Static Background Image */}
+        <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&q=80&w=2070" 
             alt="Luxury Spa Retreat" 
-            className="w-full h-[120%] object-cover"
+            className="w-full h-full object-cover"
           />
           {/* Enhanced gradient overlay for better text visibility */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-        </motion.div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+        </div>
         
         {/* Hero Content */}
-        <div className="container-custom relative z-10 text-white text-center mt-16">
+        <div className="container-custom relative z-10 text-white text-center pt-24 sm:pt-20 md:pt-16 lg:pt-0">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2 }}
-            className="max-w-4xl mx-auto"
+            className="max-w-4xl mx-auto px-4"
           >
             <motion.span 
               {...fadeInUp}
@@ -60,24 +55,24 @@ const HomePage = () => {
             <motion.h1 
               {...fadeInUp}
               transition={{ ...fadeInUp.transition, delay: 0.2 }}
-              className="font-serif font-bold mb-6 drop-shadow-2xl"
+              className="font-serif font-bold mb-6 drop-shadow-2xl px-4"
             >
               <span className="text-white">Experience True</span>
-              <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-accent-300 to-secondary-300 drop-shadow-2xl">
+              <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-accent-300 to-secondary-300 pb-2" style={{ textShadow: '0 0 20px rgba(255,255,255,0.3)' }}>
                 Luxury & Wellness
               </span>
             </motion.h1>
             <motion.p 
               {...fadeInUp}
               transition={{ ...fadeInUp.transition, delay: 0.4 }}
-              className="text-xl md:text-2xl mb-10 text-gray-100 max-w-2xl mx-auto drop-shadow-lg"
+              className="text-xl md:text-2xl mb-12 text-gray-100 max-w-2xl mx-auto drop-shadow-lg"
             >
               Immerse yourself in tranquility at our exclusive spa retreat, where ancient healing traditions meet modern luxury.
             </motion.p>
             <motion.div 
               {...fadeInUp}
               transition={{ ...fadeInUp.transition, delay: 0.6 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 sm:mb-16"
             >
               <Link to="/services" className="btn-primary bg-primary-600 hover:bg-primary-700 px-8 py-4 text-lg group shadow-2xl">
                 <span>Explore Services</span>
@@ -85,31 +80,33 @@ const HomePage = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
-              <Link to="/booking" className="btn-outline text-white border-white hover:bg-white hover:text-charcoal-900 px-8 py-4 text-lg shadow-xl backdrop-blur-sm">
+              <Link to="/booking" className="border-2 border-white text-white hover:bg-white hover:text-gray-900 dark:hover:bg-white dark:hover:text-gray-900 px-8 py-4 text-lg font-medium rounded-full shadow-xl backdrop-blur-sm transition-all duration-300 hover:shadow-2xl">
                 Book Your Escape
               </Link>
             </motion.div>
           </motion.div>
         </div>
         
-        {/* Animated Scroll Indicator */}
+        {/* Animated Scroll Indicator - Hidden on Mobile */}
         <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
+          className="absolute bottom-8 w-full z-10 hidden sm:block"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8 }}
         >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="text-white/80 cursor-pointer"
-            onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-          >
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-            <span className="text-xs block mt-2 uppercase tracking-widest">Scroll</span>
-          </motion.div>
+          <div className="flex justify-center">
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="text-white/80 cursor-pointer flex flex-col items-center"
+              onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+            >
+              <svg className="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+              <span className="text-xs uppercase tracking-widest">Scroll</span>
+            </motion.div>
+          </div>
         </motion.div>
       </section>
       

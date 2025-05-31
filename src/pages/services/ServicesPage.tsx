@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
-import { useParallax } from '../../hooks/useParallax';
 import { Link } from 'react-router-dom';
 
 // Types for services
@@ -122,7 +121,6 @@ const categories = [
 const ServicesPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const headerParallax = useParallax({ speed: 0.3 });
   const servicesAnimation = useScrollAnimation({ threshold: 0.1 });
 
   const filteredServices = selectedCategory === 'all' 
@@ -152,19 +150,16 @@ const ServicesPage = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with Parallax */}
+      {/* Hero Section - Static (No Parallax) */}
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
-        <motion.div 
-          className="absolute inset-0"
-          style={{ transform: `translateY(${headerParallax}px)` }}
-        >
+        <div className="absolute inset-0">
           <img 
             src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&q=80&w=2070" 
             alt="Spa Services" 
-            className="w-full h-full object-cover scale-110"
+            className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70"></div>
-        </motion.div>
+        </div>
         <div className="container-custom relative z-10 text-center text-white">
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
