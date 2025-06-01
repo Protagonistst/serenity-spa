@@ -1,8 +1,5 @@
 {
     "rewrites": [
       { "source": "/(.*)", "destination": "/" }
-    ],
-    "ignoreCommand": "echo 'Ignoring server files for frontend-only deploy'",
-    "cleanUrls": true,
-    "trailingSlash": false
+    ]
   }
